@@ -3083,6 +3083,27 @@ class DraftParser(Base):
                 if entity is None:
                     entity = self.maybe_entity_from_draftname(para)
                 if entity is None:
+                    #try generating a reference
+                    #global reftext_chunks
+                    text = para2str(para)
+                    match = re.search(r'{anchor} '.format(**reftext_chunks), text)
+                    if match:
+                        pass
+                        refinfo = match.groupdict()
+                        self.dpprint('refinfo')
+                        
+                        anchor = refinfo.get('anchor')
+                        print("Anchro", anchor)
+                        reference.set('anchor', anchor)
+                        self.reference_anchors.append(anchor)
+
+                        key = 'title'
+                        e = self.element(key, text)
+                        front.append(e)
+
+                        e = self.element('author')
+                        front.append(e)
+
                     self.warn(line.num, "Failed parsing a reference.  Are all elements separated by commas (not periods, not just spaces)?:\n%s" % para2text(para))
         return reference, entity
 
