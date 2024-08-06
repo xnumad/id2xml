@@ -48,9 +48,9 @@ COPYRIGHT
 
 from __future__ import print_function, unicode_literals, division
 
-from id2xml.__init__ import __version__
-from id2xml.parser import DraftParser
-from id2xml.utils import Options, wrap, strip_pagebreaks, stream_names
+from __init__ import __version__
+from parser import DraftParser
+from utils import Options, wrap, strip_pagebreaks, stream_names
 
 try:
     import debug
