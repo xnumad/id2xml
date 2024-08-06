@@ -1682,9 +1682,10 @@ class DraftParser(Base):
             if self.is_rfc:
                 if self.options.doc_consensus:
                     self.root.set('consensus', self.options.doc_consensus)
-            else:
-                if self.options.doc_ipr:
-                    self.root.set('ipr', self.options.doc_ipr)
+            
+            if self.options.doc_ipr:
+                print("setting")
+                self.root.set('ipr', self.options.doc_ipr)
             while True:
                 line = self.skip_blank_lines()
                 if self.is_section_start(line, part='front'):
